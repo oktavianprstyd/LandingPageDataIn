@@ -83,11 +83,11 @@ export default function NavBar() {
           >
             <div className="h-9 sm:h-12 flex items-center justify-center py-1">
               <img
-                src="/images/logo.png"
+                src="/images/logo.webp"
                 alt="Logo DataIn"
                 className="h-full max-h-9 sm:max-h-12 object-contain brightness-0 invert group-hover:scale-105 transition-transform"
                 onError={(e) => {
-                  (e.currentTarget as HTMLImageElement).style.display = 'none';
+                  (e.currentTarget as HTMLImageElement).src = '/images/logo.png';
                 }}
               />
               <span className="text-lg sm:text-2xl font-extrabold font-heading tracking-tight text-white ml-1.5">

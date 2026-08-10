@@ -47,10 +47,10 @@ export default function HeroSection() {
             </button>
           </div>
 
-          {/* Centered Illustration Artwork — Mobile Scaling */}
+          {/* Centered Illustration Artwork — Optimized WebP */}
           <div className="relative max-w-3xl w-full mx-auto pt-1 group flex items-center justify-center">
             <img
-              src="/images/thinking_student.png"
+              src="/images/thinking_student.webp"
               alt="Ilustrasi DataIn Asistensi Akademik"
               className="relative z-10 w-full max-h-[360px] sm:max-h-[520px] object-contain mx-auto transition-transform duration-500 group-hover:scale-[1.02]"
             />

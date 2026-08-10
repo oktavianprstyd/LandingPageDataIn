@@ -60,11 +60,11 @@ export default function Footer() {
             <Link to="/" className="flex items-center gap-2.5 group">
               <div className="h-9 flex items-center justify-center">
                 <img
-                  src="/images/logo.png"
+                  src="/images/logo.webp"
                   alt="Logo DataIn"
                   className="h-full object-contain brightness-0 invert group-hover:scale-105 transition-transform"
                   onError={(e) => {
-                    (e.currentTarget as HTMLImageElement).style.display = 'none';
+                    (e.currentTarget as HTMLImageElement).src = '/images/logo.png';
                   }}
                 />
                 <span className="text-2xl font-extrabold font-heading text-white ml-2">
