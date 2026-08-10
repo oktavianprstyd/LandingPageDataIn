@@ -4,8 +4,7 @@
 
 @layer base {
   html {
-    scroll-behavior: smooth;
-    scroll-padding-top: 90px;
+    scroll-behavior: auto; /* Handled by Lenis engine for ultra smooth inertia scroll */
     -webkit-overflow-scrolling: touch;
   }
 
@@ -22,6 +21,27 @@
     letter-spacing: -0.02em;
     color: #1E3A5F;
   }
+}
+
+/* Lenis Smooth Scroll Engine Styles */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
 }
 
 /* Custom Warm Palette Utilities */

@@ -46,7 +46,7 @@ export default function NavBar() {
         window.location.href = `/#${sectionId}`;
         return;
       }
-      smoothScrollTo(sectionId, 85, 750);
+      smoothScrollTo(sectionId, 85);
       setMenuOpen(false);
     },
     [isHomePage],
@@ -72,7 +72,7 @@ export default function NavBar() {
           {/* LEFT: Brand Logo */}
           <Link
             to="/"
-            onClick={() => isHomePage && smoothScrollTo('beranda', 85, 750)}
+            onClick={() => isHomePage && smoothScrollTo('beranda', 85)}
             className="flex items-center gap-1.5 sm:gap-2 group focus:outline-none shrink-0"
             aria-label="DataIn — kembali ke beranda"
           >

@@ -47,7 +47,7 @@ export default function Footer() {
       window.location.href = `/#${sectionId}`;
       return;
     }
-    smoothScrollTo(sectionId, 85, 750);
+    smoothScrollTo(sectionId, 85);
   };
 
   return (
@@ -59,7 +59,7 @@ export default function Footer() {
           <div className="flex flex-col gap-4">
             <Link
               to="/"
-              onClick={() => isHomePage && smoothScrollTo('beranda', 85, 750)}
+              onClick={() => isHomePage && smoothScrollTo('beranda', 85)}
               className="flex items-center gap-2.5 group"
             >
               <div className="h-9 flex items-center justify-center">

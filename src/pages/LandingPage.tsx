@@ -1,4 +1,5 @@
 // src/pages/LandingPage.tsx
+import { useEffect } from 'react';
 import SEOHead from '../components/common/SEOHead';
 import NavBar from '../components/common/NavBar';
 import Footer from '../components/common/Footer';
@@ -15,6 +16,7 @@ import { services } from '../data/services';
 import { advantages } from '../data/advantages';
 import { testimonials } from '../data/testimonials';
 import { socialMediaLinks } from '../data/socialMedia';
+import { initSmoothScroll } from '../utils/smoothScroll';
 
 /**
  * Landing Page component.
@@ -23,6 +25,11 @@ import { socialMediaLinks } from '../data/socialMedia';
 export default function LandingPage() {
   const metaDescription =
     'DataIn menyediakan jasa joki tugas, olah data responden, dan bimbingan konsul akademik cepat, terpercaya, serta menjaga kerahasiaan 100%.';
+
+  useEffect(() => {
+    // Initialize Lenis smooth inertia scrolling
+    initSmoothScroll();
+  }, []);
 
   return (
     <div className="min-h-screen bg-[#FAF6F0] text-[#1E3A5F] flex flex-col font-sans selection:bg-[#002D80] selection:text-white relative">
