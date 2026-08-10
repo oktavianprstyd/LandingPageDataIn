@@ -3,11 +3,13 @@ import SEOHead from '../components/common/SEOHead';
 import NavBar from '../components/common/NavBar';
 import Footer from '../components/common/Footer';
 import HeroSection from '../components/sections/HeroSection';
+import CompanyProfileBriefSection from '../components/sections/CompanyProfileBriefSection';
 import ServiceSection from '../components/sections/ServiceSection';
 import AdvantageSection from '../components/sections/AdvantageSection';
 import TestimonialSection from '../components/sections/TestimonialSection';
-import ContactSection from '../components/sections/ContactSection';
+import FAQSection from '../components/sections/FAQSection';
 import SocialMediaSection from '../components/sections/SocialMediaSection';
+import WhatsAppFloatingWidget from '../components/common/WhatsAppFloatingWidget';
 
 import { services } from '../data/services';
 import { advantages } from '../data/advantages';
@@ -23,7 +25,7 @@ export default function LandingPage() {
     'DataIn menyediakan jasa joki tugas, olah data responden, dan bimbingan konsul akademik cepat, terpercaya, serta menjaga kerahasiaan 100%.';
 
   return (
-    <div className="min-h-screen bg-[#0a0a0f] text-gray-50 flex flex-col font-sans selection:bg-blue-500 selection:text-white">
+    <div className="min-h-screen bg-[#FAF6F0] text-[#1E3A5F] flex flex-col font-sans selection:bg-[#002D80] selection:text-white relative">
       <SEOHead
         title="DataIn - Layanan Asistensi Akademik & Olah Data Terpercaya"
         description={metaDescription}
@@ -31,12 +33,14 @@ export default function LandingPage() {
       <NavBar />
       <main className="flex-1">
         <HeroSection />
+        <CompanyProfileBriefSection />
         <ServiceSection services={services} />
         <AdvantageSection advantages={advantages} />
         <TestimonialSection testimonials={testimonials} />
-        <ContactSection />
+        <FAQSection />
         <SocialMediaSection links={socialMediaLinks} />
       </main>
+      <WhatsAppFloatingWidget />
       <Footer />
     </div>
   );

@@ -11,7 +11,7 @@ export const services: ServiceItem[] = [
       'Revisi gratis hingga selesai',
       'Tepat sebelum deadline',
     ],
-    image: '/images/services/service_joki_tugas.jpg',
+    image: '/images/services/joki tugas.png',
   },
   {
     id: 'jasa-responden',
@@ -23,7 +23,7 @@ export const services: ServiceItem[] = [
       'Sesuai kriteria penelitian',
       'Pengisian cepat & terpercaya',
     ],
-    image: '/images/services/service_jasa_responden.jpg',
+    image: '/images/services/service_jasa_responden.png',
   },
   {
     id: 'konsultasi-akademik',
@@ -35,7 +35,7 @@ export const services: ServiceItem[] = [
       'Tim berpengalaman S1–S3',
       'Tersedia 7 hari seminggu',
     ],
-    image: '/images/services/service_konsultasi_akademik.jpg',
+    image: '/images/services/service_konsultasi_akademik.png',
   },
   {
     id: 'pembuatan-laporan',
@@ -47,7 +47,7 @@ export const services: ServiceItem[] = [
       'Struktur terorganisir',
       'Siap cetak & kumpul',
     ],
-    image: '/images/services/service_pembuatan_laporan.jpg',
+    image: '/images/services/laporan.png',
   },
   {
     id: 'olah-data',
@@ -59,6 +59,6 @@ export const services: ServiceItem[] = [
       'Interpretasi hasil bab 4 lengkap',
       'Konsultasi gratis hingga paham',
     ],
-    image: '/images/services/service_olah_data.jpg',
+    image: '/images/services/olah data.png',
   },
 ];

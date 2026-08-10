@@ -11,12 +11,25 @@ export default {
         heading: ['"Outfit"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
       },
       colors: {
-        datain: {
-          blue: '#2563eb',
-          hover: '#1d4ed8',
-          navy: '#0b132b',
-          dark: '#0f172a',
-          light: '#f8fafc',
+        navy: {
+          DEFAULT: '#1E3A5F',
+          dark: '#142742',
+          light: '#284C7B',
+        },
+        cream: {
+          DEFAULT: '#FAF6F0',
+          dark: '#F4F0EA',
+          light: '#FFFFFF',
+        },
+        slateBlue: {
+          DEFAULT: '#4A709C',
+          dark: '#3A5A80',
+          light: '#5E86B5',
+        },
+        taupe: {
+          DEFAULT: '#D8CFC4',
+          dark: '#C4B9AA',
+          light: '#ECE6DD',
         },
       },
     },
