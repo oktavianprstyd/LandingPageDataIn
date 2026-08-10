@@ -4,6 +4,7 @@ import { Menu, X, Phone } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { useActiveSection } from '../../hooks/useActiveSection';
 import { WA_URL } from '../../data/socialMedia';
+import { smoothScrollTo } from '../../utils/smoothScroll';
 
 interface NavLink {
   label: string;
@@ -19,13 +20,6 @@ const NAV_LINKS: NavLink[] = [
 ];
 
 const SECTION_IDS = NAV_LINKS.map((l) => l.sectionId);
-
-function scrollToSection(sectionId: string): void {
-  const el = document.getElementById(sectionId);
-  if (el) {
-    el.scrollIntoView({ behavior: 'smooth' });
-  }
-}
 
 export default function NavBar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -52,7 +46,7 @@ export default function NavBar() {
         window.location.href = `/#${sectionId}`;
         return;
       }
-      scrollToSection(sectionId);
+      smoothScrollTo(sectionId, 85, 750);
       setMenuOpen(false);
     },
     [isHomePage],
@@ -78,6 +72,7 @@ export default function NavBar() {
           {/* LEFT: Brand Logo */}
           <Link
             to="/"
+            onClick={() => isHomePage && smoothScrollTo('beranda', 85, 750)}
             className="flex items-center gap-1.5 sm:gap-2 group focus:outline-none shrink-0"
             aria-label="DataIn — kembali ke beranda"
           >
@@ -109,7 +104,7 @@ export default function NavBar() {
                   type="button"
                   onClick={() => handleNavClick(sectionId)}
                   className={[
-                    'px-4 py-1.5 text-xs sm:text-sm font-semibold rounded-full transition-all duration-200',
+                    'px-4 py-1.5 text-xs sm:text-sm font-semibold rounded-full transition-all duration-200 cursor-pointer',
                     isActive
                       ? 'bg-white/20 text-white font-bold shadow-sm'
                       : 'text-white/80 hover:text-white hover:bg-white/10',
@@ -179,7 +174,7 @@ export default function NavBar() {
                 onClick={() => handleNavClick(sectionId)}
                 tabIndex={menuOpen ? 0 : -1}
                 className={[
-                  'w-full text-left px-4 py-2.5 text-sm font-semibold rounded-xl transition-colors',
+                  'w-full text-left px-4 py-2.5 text-sm font-semibold rounded-xl transition-colors cursor-pointer',
                   isActive
                     ? 'bg-white/20 text-white font-bold'
                     : 'text-white/80 hover:bg-white/10',

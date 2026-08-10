@@ -3,6 +3,7 @@ import { Instagram, Music, Phone, ExternalLink, type LucideIcon } from 'lucide-r
 import { Link, useLocation } from 'react-router-dom';
 import { socialMediaLinks } from '../../data/socialMedia';
 import type { SocialMediaItem } from '../../types';
+import { smoothScrollTo } from '../../utils/smoothScroll';
 
 const ICON_MAP: Record<string, LucideIcon> = {
   Instagram,
@@ -46,8 +47,7 @@ export default function Footer() {
       window.location.href = `/#${sectionId}`;
       return;
     }
-    const el = document.getElementById(sectionId);
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
+    smoothScrollTo(sectionId, 85, 750);
   };
 
   return (
@@ -57,7 +57,11 @@ export default function Footer() {
           
           {/* Brand Col */}
           <div className="flex flex-col gap-4">
-            <Link to="/" className="flex items-center gap-2.5 group">
+            <Link
+              to="/"
+              onClick={() => isHomePage && smoothScrollTo('beranda', 85, 750)}
+              className="flex items-center gap-2.5 group"
+            >
               <div className="h-9 flex items-center justify-center">
                 <img
                   src="/images/logo.webp"
@@ -93,7 +97,7 @@ export default function Footer() {
                   <button
                     type="button"
                     onClick={() => handleLinkClick(sectionId)}
-                    className="text-sm text-blue-100 hover:text-white transition-colors"
+                    className="text-sm text-blue-100 hover:text-white transition-colors cursor-pointer"
                   >
                     {label}
                   </button>
