@@ -1,27 +1,22 @@
 // src/components/sections/ServiceSection.tsx
-import { BookOpen, Users, MessageCircle, FileText, BarChart3, Check, ArrowRight, Sparkles } from 'lucide-react';
+import { MessageCircle, Check, ArrowRight, Sparkles } from 'lucide-react';
 import SectionWrapper from '../common/SectionWrapper';
 import type { ServiceItem } from '../../types';
-import { WA_URL } from '../../data/socialMedia';
 
 interface ServiceSectionProps {
   services: ServiceItem[];
 }
 
-const ICON_MAP = {
-  'joki-tugas': BookOpen,
-  'jasa-responden': Users,
-  'konsultasi-akademik': MessageCircle,
-  'pembuatan-laporan': FileText,
-  'olah-data': BarChart3,
-};
+const WHATSAPP_NUMBER = '6282227445735';
 
 export default function ServiceSection({ services }: ServiceSectionProps) {
   const topServices = services.slice(0, 3);
   const bottomServices = services.slice(3, 5);
 
-  const renderCard = (item: ServiceItem, idx: number) => {
-    const IconComp = ICON_MAP[item.id as keyof typeof ICON_MAP] ?? BookOpen;
+  const renderCard = (item: ServiceItem) => {
+    // Custom WhatsApp template per service
+    const customWaMessage = `Halo Admin DataIn! Saya berminat memesan ${item.name}. Mohon informasi penawaran harga & estimasi pengerjaannya ya!`;
+    const serviceWaUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(customWaMessage)}`;
 
     return (
       <div
@@ -29,17 +24,13 @@ export default function ServiceSection({ services }: ServiceSectionProps) {
         className="bg-[#FFFFFF] border border-[#D8CFC4] hover:border-[#002D80] rounded-[28px] sm:rounded-[32px] p-6 sm:p-8 shadow-sm hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group"
       >
         <div>
-          {/* Top Centered PNG Illustration Image Container */}
+          {/* Top Centered PNG/WebP Illustration Image Container — Badge Removed */}
           <div className="relative rounded-2xl overflow-hidden mb-6 bg-[#FAF6F0] p-2.5 sm:p-3 border border-[#D8CFC4]/60 h-44 sm:h-56 flex items-center justify-center">
             <img
-              src={item.image || '/images/thinking_student.png'}
+              src={item.image || '/images/thinking_student.webp'}
               alt={item.name}
               className="w-full h-full object-contain rounded-xl group-hover:scale-105 transition-transform duration-500"
             />
-            <div className="absolute top-3 left-3 bg-[#FFFFFF]/90 backdrop-blur-md border border-[#D8CFC4] text-[#002D80] text-[10px] font-extrabold uppercase tracking-wider px-3 py-1 rounded-full font-heading shadow-sm flex items-center gap-1.5">
-              <IconComp className="w-3.5 h-3.5 text-[#002D80]" />
-              <span>Layanan #{idx + 1}</span>
-            </div>
           </div>
 
           {/* Service Title */}
@@ -67,9 +58,9 @@ export default function ServiceSection({ services }: ServiceSectionProps) {
           </div>
         </div>
 
-        {/* Direct WhatsApp Action Button */}
+        {/* Direct WhatsApp Action Button with Specific Service Template */}
         <a
-          href={WA_URL}
+          href={serviceWaUrl}
           target="_blank"
           rel="noopener noreferrer"
           className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-[#002D80] hover:bg-[#002060] text-white text-xs sm:text-sm font-extrabold shadow-md hover:shadow-xl transition-all group/btn"
@@ -109,12 +100,12 @@ export default function ServiceSection({ services }: ServiceSectionProps) {
 
         {/* Row 1: Top 3 Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 mb-6 sm:mb-8">
-          {topServices.map((item, idx) => renderCard(item, idx))}
+          {topServices.map((item) => renderCard(item))}
         </div>
 
         {/* Row 2: Bottom 2 Cards (Balanced) */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-          {bottomServices.map((item, idx) => renderCard(item, idx + 3))}
+          {bottomServices.map((item) => renderCard(item))}
         </div>
 
       </div>

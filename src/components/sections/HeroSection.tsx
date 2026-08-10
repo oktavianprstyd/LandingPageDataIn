@@ -1,19 +1,9 @@
 // src/components/sections/HeroSection.tsx
 import { Sparkles, ArrowRight } from 'lucide-react';
 import SectionWrapper from '../common/SectionWrapper';
-
-function scrollToSection(sectionId: string): void {
-  const el = document.getElementById(sectionId);
-  if (el) {
-    el.scrollIntoView({ behavior: 'smooth' });
-  }
-}
+import { WA_URL } from '../../data/socialMedia';
 
 export default function HeroSection() {
-  const handleConsultClick = () => {
-    scrollToSection('kontak');
-  };
-
   return (
     <div className="bg-[#FAF6F0] pt-20 sm:pt-28 pb-10 sm:pb-16 overflow-hidden text-center relative border-b border-[#D8CFC4]">
       
@@ -34,17 +24,18 @@ export default function HeroSection() {
             Bantu pengerjaan langsung dari tim expert untuk kuasai <strong className="text-[#002D80]">Tugas Kuliah</strong>, <strong className="text-[#002D80]">Responden Survei</strong>, <strong className="text-[#002D80]">Bimbingan Skripsi</strong>, dan <strong className="text-[#002D80]">Olah Data SPSS/SmartPLS</strong>. Lulus tepat waktu dengan hasil terpercaya &amp; bebas plagiasi!
           </p>
 
-          {/* Centered Action Button */}
+          {/* Centered Action Button — Directly Linked to WA_URL */}
           <div className="flex justify-center mb-8 sm:mb-10 w-full sm:w-auto">
-            <button
-              type="button"
-              onClick={handleConsultClick}
+            <a
+              href={WA_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-3.5 sm:py-4 rounded-full bg-[#002D80] hover:bg-[#002060] active:scale-95 text-white font-extrabold text-sm sm:text-base shadow-xl shadow-[#002D80]/20 transition-all cursor-pointer"
             >
               <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-amber-300 fill-amber-300" />
               <span>Konsultasi Sekarang</span>
               <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-1" />
-            </button>
+            </a>
           </div>
 
           {/* Centered Illustration Artwork — Optimized WebP */}
