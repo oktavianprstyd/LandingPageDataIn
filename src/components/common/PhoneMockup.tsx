@@ -1,6 +1,6 @@
 // src/components/common/PhoneMockup.tsx
 import { useState, useEffect } from 'react';
-import { Star, BookOpen, Users, MessageCircle, FileText, BarChart3, Sparkles } from 'lucide-react';
+import { Star, BookOpen, Users, MessageCircle, FileText, BarChart3, Palette, Sparkles } from 'lucide-react';
 import type { ServiceItem } from '../../types';
 
 interface PhoneMockupProps {
@@ -10,10 +10,13 @@ interface PhoneMockupProps {
 
 const ICON_MAP = {
   'joki-tugas': BookOpen,
+  'tugas-sekolah-kuliah': BookOpen,
   'jasa-responden': Users,
+  'isi-kuesioner-responden': Users,
   'konsultasi-akademik': MessageCircle,
   'pembuatan-laporan': FileText,
   'olah-data': BarChart3,
+  'desain-canva': Palette,
 };
 
 export default function PhoneMockup({ activeService, customImage }: PhoneMockupProps) {

@@ -10,9 +10,6 @@ interface ServiceSectionProps {
 const WHATSAPP_NUMBER = '6282227445735';
 
 export default function ServiceSection({ services }: ServiceSectionProps) {
-  const topServices = services.slice(0, 3);
-  const bottomServices = services.slice(3, 5);
-
   const renderCard = (item: ServiceItem) => {
     // Custom WhatsApp template per service
     const customWaMessage = `Halo Admin DataIn! Saya berminat memesan ${item.name}. Mohon informasi penawaran harga & estimasi pengerjaannya ya!`;
@@ -24,7 +21,7 @@ export default function ServiceSection({ services }: ServiceSectionProps) {
         className="bg-[#FFFFFF] border border-[#D8CFC4] hover:border-[#002D80] rounded-[28px] sm:rounded-[32px] p-6 sm:p-8 shadow-sm hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group"
       >
         <div>
-          {/* Top Centered PNG/WebP Illustration Image Container — Badge Removed */}
+          {/* Top Centered PNG/WebP Illustration Image Container */}
           <div className="relative rounded-2xl overflow-hidden mb-6 bg-[#FAF6F0] p-2.5 sm:p-3 border border-[#D8CFC4]/60 h-44 sm:h-56 flex items-center justify-center">
             <img
               src={item.image || '/images/thinking_student.webp'}
@@ -94,18 +91,13 @@ export default function ServiceSection({ services }: ServiceSectionProps) {
             Kenapa Kamu Perlu Layanan DataIn?
           </h2>
           <p className="text-[#4A709C] text-sm sm:text-lg mt-3 font-medium px-2">
-            5 Layanan akademik profesional dengan garansi tepat waktu, 100% bebas plagiasi, dan tim lulusan kampus ternama S1–S3.
+            6 Layanan akademik &amp; kreatif profesional dengan garansi tepat waktu, 100% bebas plagiasi, dan tim lulusan kampus ternama S1–S3.
           </p>
         </div>
 
-        {/* Row 1: Top 3 Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 mb-6 sm:mb-8">
-          {topServices.map((item) => renderCard(item))}
-        </div>
-
-        {/* Row 2: Bottom 2 Cards (Balanced) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-          {bottomServices.map((item) => renderCard(item))}
+        {/* Service Cards Grid (3 Columns on Desktop, 2 on Tablet, 1 on Mobile) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          {services.map((item) => renderCard(item))}
         </div>
 
       </div>

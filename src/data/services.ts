@@ -4,8 +4,8 @@ export const services: ServiceItem[] = [
   {
     id: 'joki-tugas',
     icon: 'BookOpen',
-    name: 'Joki Tugas',
-    description: 'Bantu pengerjaan tugas kuliah dan sekolah secara profesional, tepat waktu, dan sesuai instruksi dosen.',
+    name: 'Tugas Sekolah & Kuliah',
+    description: 'Tugas numpuk? Biar prosesnya lebih ringan, kami bantu kebutuhan akademik dari makalah, essay, resume materi, review artikel/jurnal, hingga tugas presentasi.',
     features: [
       'Pengerjaan oleh ahli di bidangnya',
       'Revisi gratis hingga selesai',
@@ -16,8 +16,8 @@ export const services: ServiceItem[] = [
   {
     id: 'jasa-responden',
     icon: 'Users',
-    name: 'Jasa Responden',
-    description: 'Penyediaan responden nyata untuk kebutuhan survei, kuesioner, dan penelitian akademik Anda.',
+    name: 'Isi Kuesioner & Penyedia Responden',
+    description: 'Penyediaan responden nyata dan pengisian kuesioner terpercaya untuk kebutuhan survei serta penelitian akademik Anda.',
     features: [
       'Responden terverifikasi nyata',
       'Sesuai kriteria penelitian',
@@ -41,10 +41,10 @@ export const services: ServiceItem[] = [
     id: 'pembuatan-laporan',
     icon: 'FileText',
     name: 'Pembuatan Laporan',
-    description: 'Penyusunan laporan praktikum, PKL, KKN, dan laporan akademik lainnya secara terstruktur dan rapi.',
+    description: 'Bantu menyusun dan merapikan laporan PKL, KKN, Praktikum, Observasi, Penelitian dari struktur hingga formatting agar lebih siap digunakan.',
     features: [
       'Format sesuai standar kampus',
-      'Struktur terorganisir',
+      'Struktur terorganisir & rapi',
       'Siap cetak & kumpul',
     ],
     image: '/images/services/laporan.webp',
@@ -60,5 +60,17 @@ export const services: ServiceItem[] = [
       'Konsultasi gratis hingga paham',
     ],
     image: '/images/services/olah_data.webp',
+  },
+  {
+    id: 'desain-canva',
+    icon: 'Palette',
+    name: 'Desain Canva',
+    description: 'Butuh desain Canva untuk tugas, organisasi atau wirausaha? Kami bantu ubah idemu jadi siap digunakan.',
+    features: [
+      'Tinggal kirim bahan konsep & materi',
+      'Desain rapi, kreatif & profesional',
+      'Siap pakai untuk berbagai kebutuhan',
+    ],
+    image: '/images/services/desain_canva.jpeg',
   },
 ];

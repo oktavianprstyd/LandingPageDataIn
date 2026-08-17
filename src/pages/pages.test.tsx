@@ -35,16 +35,16 @@ describe('LandingPage', () => {
     expect(screen.getByRole('heading', { level: 1, name: /DataIn/i })).toBeInTheDocument();
 
     // Service Section
-    expect(screen.getByRole('heading', { name: /Layanan Kami/i })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /Kenapa Kamu Perlu Layanan DataIn/i })).toBeInTheDocument();
 
     // Advantage Section
-    expect(screen.getByRole('heading', { name: /Keunggulan Kami/i })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /Keunggulan/i })).toBeInTheDocument();
 
     // Testimonial Section
     expect(screen.getByRole('heading', { name: /Kata Mereka/i })).toBeInTheDocument();
 
-    // Contact Section
-    expect(screen.getByRole('heading', { name: /Hubungi Kami/i })).toBeInTheDocument();
+    // FAQ Section
+    expect(screen.getByRole('heading', { name: /Sering Ditanyakan/i })).toBeInTheDocument();
   });
 });
 
