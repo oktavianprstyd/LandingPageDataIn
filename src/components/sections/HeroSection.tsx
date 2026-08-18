@@ -12,11 +12,9 @@ export default function HeroSection() {
           
           {/* Centered Title — Mobile Optimized Fluid Typography */}
           <h1 className="text-3xl sm:text-6xl lg:text-7xl font-heading tracking-tight max-w-4xl mx-auto leading-[1.18] mb-5 sm:mb-6">
-            <span className="font-normal italic font-serif text-[#002D80]">DataIn</span>{' '}
-            <span className="font-medium text-black">solusi akademismu</span>{' '}
+            <span className="font-medium text-black">Selesaikan Urusan Kampus</span>{' '}
             <br className="hidden sm:inline" />
-            <span className="font-medium text-black">Raih</span>{' '}
-            <span className="font-normal italic font-serif text-[#002D80]">Prestasi Kampusmu</span>
+            <span className="font-normal italic font-serif text-[#002D80]">Lebih Cepat, Tepat, dan Bebas Stress</span>
           </h1>
 
           {/* Centered Subtitle Paragraph */}
