@@ -11,6 +11,7 @@ import TestimonialSection from '../components/sections/TestimonialSection';
 import FAQSection from '../components/sections/FAQSection';
 import SocialMediaSection from '../components/sections/SocialMediaSection';
 import WhatsAppFloatingWidget from '../components/common/WhatsAppFloatingWidget';
+import ChatbotWidget from '../components/common/ChatbotWidget';
 
 import { services } from '../data/services';
 import { advantages } from '../data/advantages';
@@ -48,6 +49,7 @@ export default function LandingPage() {
         <SocialMediaSection links={socialMediaLinks} />
       </main>
       <WhatsAppFloatingWidget />
+      <ChatbotWidget />
       <Footer />
     </div>
   );

@@ -32,7 +32,7 @@ describe('LandingPage', () => {
     );
 
     // Hero Section Heading
-    expect(screen.getByRole('heading', { level: 1, name: /DataIn/i })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 1, name: /Selesaikan Urusan Kampus/i })).toBeInTheDocument();
 
     // Service Section
     expect(screen.getByRole('heading', { name: /Kenapa Kamu Perlu Layanan DataIn/i })).toBeInTheDocument();

@@ -7,7 +7,7 @@ export default function WhatsAppFloatingWidget() {
   const [showTooltip, setShowTooltip] = useState(true);
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end pointer-events-auto">
+    <div className="fixed bottom-24 right-6 z-40 flex flex-col items-end pointer-events-auto">
       {/* Tooltip Popup Box */}
       {showTooltip && (
         <div className="mb-3 bg-white text-slate-900 border border-[#D8CFC4] shadow-2xl rounded-2xl p-4 max-w-[260px] sm:max-w-xs relative text-left animate-in fade-in slide-in-from-bottom-3 transition-all">
