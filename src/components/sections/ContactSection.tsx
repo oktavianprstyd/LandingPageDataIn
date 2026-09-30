@@ -1,11 +1,8 @@
 // src/components/sections/ContactSection.tsx
-import { Mail, MessageCircle, Clock, ShieldCheck, Sparkles } from 'lucide-react';
+import { MessageCircle, Music, Clock, ShieldCheck, Sparkles } from 'lucide-react';
 import SectionWrapper from '../common/SectionWrapper';
 import ContactForm from './ContactForm';
-
-const WHATSAPP_NUMBER = '6281234567890'; // +62 812-3456-7890
-const WHATSAPP_DISPLAY = '+62 812-3456-7890';
-const EMAIL_ADDRESS = 'datain@email.com';
+import { TIKTOK_HANDLE, TIKTOK_URL, WA_DISPLAY, waUrl } from '../../data/contact';
 
 export default function ContactSection() {
   return (
@@ -34,11 +31,11 @@ export default function ContactSection() {
             
             {/* WhatsApp Direct Card */}
             <a
-              href={`https://wa.me/${WHATSAPP_NUMBER}`}
+              href={waUrl()}
               target="_blank"
               rel="noopener noreferrer"
               className="bg-[#FFFFFF] border border-[#D8CFC4] hover:border-[#1E3A5F] rounded-3xl p-7 flex items-center gap-5 group shadow-sm hover:shadow-xl transition-all"
-              aria-label={`Hubungi via WhatsApp: ${WHATSAPP_DISPLAY}`}
+              aria-label={`Hubungi via WhatsApp: ${WA_DISPLAY}`}
             >
               <div className="w-14 h-14 rounded-2xl bg-[#1E3A5F] text-white flex items-center justify-center flex-shrink-0 group-hover:bg-[#4A709C] transition-all shadow-md">
                 <MessageCircle className="w-7 h-7" />
@@ -48,43 +45,46 @@ export default function ContactSection() {
                   Fast Response &lt; 15 Menit
                 </span>
                 <p className="text-xl font-extrabold text-[#1E3A5F] font-heading mt-1 group-hover:text-[#4A709C] transition-colors">
-                  {WHATSAPP_DISPLAY}
+                  {WA_DISPLAY}
                 </p>
               </div>
             </a>
 
-            {/* Email Card */}
-            <div className="bg-[#FFFFFF] border border-[#D8CFC4] rounded-3xl p-7 flex items-center gap-5 shadow-sm">
-              <div className="w-14 h-14 rounded-2xl bg-[#FAF6F0] border border-[#D8CFC4] flex items-center justify-center text-[#1E3A5F] flex-shrink-0 shadow-md">
-                <Mail className="w-7 h-7" />
+            {/* TikTok Card */}
+            <a
+              href={TIKTOK_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-[#FFFFFF] border border-[#D8CFC4] hover:border-[#1E3A5F] rounded-3xl p-7 flex items-center gap-5 group shadow-sm hover:shadow-xl transition-all"
+              aria-label={`Kunjungi TikTok resmi DataIn: ${TIKTOK_HANDLE}`}
+            >
+              <div className="w-14 h-14 rounded-2xl bg-[#FAF6F0] border border-[#D8CFC4] flex items-center justify-center text-[#1E3A5F] flex-shrink-0 shadow-md group-hover:bg-[#1E3A5F] group-hover:text-white transition-all">
+                <Music className="w-7 h-7" />
               </div>
               <div>
                 <p className="text-xs font-extrabold uppercase tracking-wider text-[#4A709C] mb-0.5 font-heading">
-                  Email Official
+                  TikTok Resmi
                 </p>
-                <a
-                  href={`mailto:${EMAIL_ADDRESS}`}
-                  className="text-xl font-extrabold text-[#1E3A5F] hover:text-[#4A709C] transition-colors font-heading"
-                >
-                  {EMAIL_ADDRESS}
-                </a>
+                <p className="text-xl font-extrabold text-[#1E3A5F] group-hover:text-[#4A709C] transition-colors font-heading">
+                  {TIKTOK_HANDLE}
+                </p>
               </div>
-            </div>
+            </a>
 
             {/* Operational Hours */}
             <div className="bg-[#FFFFFF] rounded-3xl p-7 border border-[#D8CFC4] shadow-md">
               <div className="flex items-center gap-3 mb-3 text-[#1E3A5F] font-extrabold text-lg font-heading">
                 <Clock className="w-5 h-5 text-[#1E3A5F]" />
-                <span>Jam Operasional Layanan</span>
+                <span>Ketersediaan Layanan</span>
               </div>
               <p className="text-[#4A709C] text-sm leading-relaxed mb-4 font-normal">
-                Senin – Sabtu: 08.00 – 22.00 WIB
+                Seluruh layanan berjalan online lewat WhatsApp, jadi tidak perlu datang ke tempat.
                 <br />
-                Minggu &amp; Libur Nasional: 09.00 – 18.00 WIB
+                Tersedia 7 hari seminggu, termasuk Sabtu, Minggu, dan hari libur.
               </p>
               <div className="flex items-center gap-2 text-xs text-[#1E3A5F] bg-[#FAF6F0] border border-[#D8CFC4] px-3.5 py-2.5 rounded-2xl font-extrabold font-heading">
                 <ShieldCheck className="w-4 h-4 flex-shrink-0 text-emerald-600" />
-                <span>Respon cepat via WhatsApp 7 hari seminggu</span>
+                <span>Respon admin rata-rata di bawah 15 menit</span>
               </div>
             </div>
           </div>

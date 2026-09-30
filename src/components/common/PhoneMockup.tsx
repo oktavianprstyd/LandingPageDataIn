@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import { Star, BookOpen, Users, MessageCircle, FileText, BarChart3, Palette, Sparkles } from 'lucide-react';
 import type { ServiceItem } from '../../types';
+import { waUrl } from '../../data/contact';
 
 interface PhoneMockupProps {
   activeService?: ServiceItem;
@@ -22,7 +23,7 @@ const ICON_MAP = {
 export default function PhoneMockup({ activeService, customImage }: PhoneMockupProps) {
   const currentId = activeService?.id ?? 'joki-tugas';
   const IconComp = ICON_MAP[currentId as keyof typeof ICON_MAP] ?? BookOpen;
-  const targetImage = customImage || activeService?.image || '/images/thinking_student.jpg';
+  const targetImage = customImage || activeService?.image || '/images/thinking_student.webp';
 
   const [currentImage, setCurrentImage] = useState(targetImage);
   const [isFading, setIsFading] = useState(false);
@@ -108,7 +109,9 @@ export default function PhoneMockup({ activeService, customImage }: PhoneMockupP
             </p>
 
             <a
-              href="https://wa.me/6281234567890"
+              href={waUrl(
+                `Halo Admin DataIn! Saya tertarik dengan ${activeService?.name ?? 'layanan ini'}.`
+              )}
               target="_blank"
               rel="noopener noreferrer"
               className="w-full block bg-white text-blue-900 hover:bg-blue-50 font-bold text-[11px] py-1.5 rounded-xl text-center shadow-md transition-colors"

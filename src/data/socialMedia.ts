@@ -1,9 +1,9 @@
 import type { SocialMediaItem } from '../types';
+import { TIKTOK_URL, waUrl } from './contact';
 
-const WHATSAPP_NUMBER = '6282227445735';
-const WA_TEMPLATE = encodeURIComponent('Halo Admin DataIn! Saya mau konsultasi mengenai asistensi tugas / olah data. Mohon info estimasi biaya & waktunya ya!');
-
-export const WA_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${WA_TEMPLATE}`;
+export const WA_URL = waUrl(
+  'Halo Admin DataIn! Saya mau konsultasi mengenai asistensi tugas / olah data. Mohon info estimasi biaya & waktunya ya!'
+);
 
 export const socialMediaLinks: SocialMediaItem[] = [
   {
@@ -15,7 +15,7 @@ export const socialMediaLinks: SocialMediaItem[] = [
   {
     id: 'tiktok',
     platform: 'tiktok',
-    url: 'https://www.tiktok.com/@datainaja_',
+    url: TIKTOK_URL,
     icon: 'Music',
   },
 ];

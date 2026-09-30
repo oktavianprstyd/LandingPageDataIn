@@ -46,6 +46,27 @@ describe('LandingPage', () => {
     // FAQ Section
     expect(screen.getByRole('heading', { name: /Sering Ditanyakan/i })).toBeInTheDocument();
   });
+
+  it('tidak ada template yang belum ter-substitute di link WhatsApp', () => {
+    const { container } = render(
+      <HelmetProvider>
+        <MemoryRouter>
+          <LandingPage />
+        </MemoryRouter>
+      </HelmetProvider>
+    );
+
+    const href = Array.from(container.querySelectorAll('a[href]')).map((a) =>
+      decodeURIComponent(a.getAttribute('href') ?? '')
+    );
+
+    expect(href.length).toBeGreaterThan(0);
+    for (const link of href) {
+      expect(link).not.toContain('${');
+      expect(link).not.toContain('undefined');
+    }
+    expect(href.some((l) => l.includes('wa.me/6282227445735'))).toBe(true);
+  });
 });
 
 describe('ProfilePage', () => {

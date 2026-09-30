@@ -4,82 +4,83 @@ import userEvent from '@testing-library/user-event';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import ChatbotWidget from './ChatbotWidget';
 
+const BUKA = /Buka Chatbot AI DataIn/i;
+const INPUT = /Tanya apa saja seputar tugas/i;
+
 describe('ChatbotWidget', () => {
   beforeEach(() => {
     vi.clearAllMocks();
     window.open = vi.fn();
     Element.prototype.scrollIntoView = vi.fn();
     Element.prototype.scrollTo = vi.fn();
-    globalThis.fetch = vi.fn().mockResolvedValue({
-      ok: true,
-      json: async () => ({
-        text: '📊 Layanan Olah Data Statistik DataIn: Kami melayani olah data statistik SPSS, SmartPLS, AMOS, dan R.',
-        suggestedActions: [{ label: '💬 Tanya Biaya via WA', action: 'whatsapp' }],
-      }),
-    } as any);
   });
 
-  it('renders launcher button in closed state initially', () => {
+  function buka() {
     render(<ChatbotWidget />);
-    const launcher = screen.getByRole('button', { name: /Buka Chatbot AI DataIn/i });
-    expect(launcher).toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: BUKA }));
+  }
+
+  it('menampilkan tombol launcher saat tertutup', () => {
+    render(<ChatbotWidget />);
+    expect(screen.getByRole('button', { name: BUKA })).toBeInTheDocument();
     expect(screen.getByText(/Tanya AI DataIn/i)).toBeInTheDocument();
   });
 
-  it('opens chat window when launcher is clicked', async () => {
-    render(<ChatbotWidget />);
-    const launcher = screen.getByRole('button', { name: /Buka Chatbot AI DataIn/i });
-    fireEvent.click(launcher);
-
+  it('membuka jendela chat beserta sapaan resmi', () => {
+    buka();
     expect(screen.getByRole('dialog', { name: /DataIn AI Assistant Chat Window/i })).toBeInTheDocument();
     expect(screen.getByText(/Ina • DataIn AI/i)).toBeInTheDocument();
-    expect(screen.getAllByText(/Saya/i)[0]).toBeInTheDocument();
-    expect(screen.getByPlaceholderText(/Tanya apa saja seputar tugas/i)).toBeInTheDocument();
+    expect(screen.getByText(/asisten resmi/i)).toBeInTheDocument();
+    expect(screen.getByPlaceholderText(INPUT)).toBeInTheDocument();
   });
 
-  it('can send a message and receive response', async () => {
+  it('membalas pesan memakai engine lokal tanpa memanggil jaringan', async () => {
+    const fetchSpy = vi.fn();
+    globalThis.fetch = fetchSpy;
+
     const user = userEvent.setup();
-    render(<ChatbotWidget />);
+    buka();
 
-    // Open chat
-    fireEvent.click(screen.getByRole('button', { name: /Buka Chatbot AI DataIn/i }));
+    await user.type(screen.getByPlaceholderText(INPUT), 'berapa biaya olah data spss?');
+    await user.click(screen.getByRole('button', { name: /Kirim pesan/i }));
 
-    const input = screen.getByPlaceholderText(/Tanya apa saja seputar tugas/i);
-    await user.type(input, 'Berapa biaya olah data spss?');
-    
-    const sendButton = screen.getByRole('button', { name: /Kirim pesan/i });
-    await user.click(sendButton);
+    expect(screen.getByText('berapa biaya olah data spss?')).toBeInTheDocument();
 
-    // Verify user message appears
-    expect(screen.getByText('Berapa biaya olah data spss?')).toBeInTheDocument();
-
-    // Verify bot response appears after async response
     await waitFor(
       () => {
-        expect(screen.getByText(/Layanan Olah Data Statistik DataIn/i)).toBeInTheDocument();
+        expect(screen.getByText(/Kebijakan Biaya/i)).toBeInTheDocument();
+      },
+      { timeout: 3000 }
+    );
+
+    expect(fetchSpy).not.toHaveBeenCalled();
+  });
+
+  it('menjalankan alur pemesanan responden bertahap', async () => {
+    const user = userEvent.setup();
+    buka();
+
+    await user.type(screen.getByPlaceholderText(INPUT), 'saya butuh responden kuesioner');
+    await user.click(screen.getByRole('button', { name: /Kirim pesan/i }));
+
+    await waitFor(
+      () => {
+        expect(screen.getAllByText(/berapa responden/i).length).toBeGreaterThan(0);
       },
       { timeout: 3000 }
     );
   });
 
-  it('can reset chat messages', async () => {
-    render(<ChatbotWidget />);
-    fireEvent.click(screen.getByRole('button', { name: /Buka Chatbot AI DataIn/i }));
-
-    const resetButton = screen.getByTitle(/Reset Percakapan/i);
-    fireEvent.click(resetButton);
-
-    expect(screen.getByText(/Ina • DataIn AI/i)).toBeInTheDocument();
+  it('mereset percakapan', () => {
+    buka();
+    fireEvent.click(screen.getByTitle(/Reset Percakapan/i));
+    expect(screen.getByText(/asisten resmi/i)).toBeInTheDocument();
   });
 
-  it('closes chat window when close button is clicked', async () => {
-    render(<ChatbotWidget />);
-    fireEvent.click(screen.getByRole('button', { name: /Buka Chatbot AI DataIn/i }));
+  it('menutup jendela chat', () => {
+    buka();
     expect(screen.getByRole('dialog')).toBeInTheDocument();
-
-    const closeButton = screen.getByTitle(/Tutup Chat/i);
-    fireEvent.click(closeButton);
-
+    fireEvent.click(screen.getByTitle(/Tutup Chat/i));
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
   });
 });

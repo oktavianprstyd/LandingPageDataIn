@@ -1,11 +1,11 @@
 // src/components/sections/CompanyProfileBriefSection.tsx
 import { Award, ShieldCheck, Users, Clock, Sparkles, MessageCircle, BookOpen } from 'lucide-react';
 import SectionWrapper from '../common/SectionWrapper';
+import { waUrl } from '../../data/contact';
 
 export default function CompanyProfileBriefSection() {
   const handleWhatsAppClick = () => {
-    const text = encodeURIComponent('Halo Admin DataIn! Saya ingin konsultasi asistensi tugas / olah data.');
-    window.open(`https://wa.me/6281234567890?text=${text}`, '_blank');
+    window.open(waUrl('Halo Admin DataIn! Saya ingin konsultasi asistensi tugas / olah data.'), '_blank');
   };
 
   return (

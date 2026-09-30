@@ -2,18 +2,18 @@
 import { MessageCircle, Check, ArrowRight, Sparkles } from 'lucide-react';
 import SectionWrapper from '../common/SectionWrapper';
 import type { ServiceItem } from '../../types';
+import { waUrl } from '../../data/contact';
 
 interface ServiceSectionProps {
   services: ServiceItem[];
 }
 
-const WHATSAPP_NUMBER = '6282227445735';
-
 export default function ServiceSection({ services }: ServiceSectionProps) {
   const renderCard = (item: ServiceItem) => {
-    // Custom WhatsApp template per service
-    const customWaMessage = `Halo Admin DataIn! Saya berminat memesan ${item.name}. Mohon informasi penawaran harga & estimasi pengerjaannya ya!`;
-    const serviceWaUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(customWaMessage)}`;
+    // Pesan pembuka dibuat per layanan agar admin langsung tahu yang dibutuhkan.
+    const serviceWaUrl = waUrl(
+      `Halo Admin DataIn! Saya berminat memesan ${item.name}. Mohon informasi penawaran harga & estimasi pengerjaannya ya!`
+    );
 
     return (
       <div

@@ -12,13 +12,19 @@ import {
 } from 'lucide-react';
 import type { ChatMessage, SuggestedAction } from '../../types/chat';
 import { sendChatMessage } from '../../services/chatService';
+import { ORDER_AWAL, type OrderState } from '../../chat/orderFlow';
 import { WA_URL } from '../../data/socialMedia';
+import { WA_NUMBER } from '../../data/contact';
 
 const INITIAL_MESSAGES: ChatMessage[] = [
   {
     id: 'welcome-1',
     sender: 'assistant',
-    text: `Halo! 👋 Saya **Ina**, asisten AI resmi dari **DataIn**.\n\nAda yang bisa saya bantu seputar tugas kuliah, olah data statistik (SPSS/PLS), responden survei, atau bimbingan skripsi?`,
+    text: `Halo! 👋 Saya **Ina**, asisten resmi **DataIn**.
+
+Saya siap menjelaskan semua layanan kami — mulai dari joki responden kuesioner, olah data SPSS/SmartPLS, bantuan tugas, sampai bimbingan skripsi.
+
+Mau mulai dari yang mana Kak? 😊`,
     timestamp: new Date(),
     suggestedActions: [
       { label: '👥 Jasa Responden Kuesioner', action: 'prompt', value: 'Saya butuh responden kuesioner' },
@@ -35,6 +41,7 @@ export default function ChatbotWidget() {
   const [inputText, setInputText] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const [hasUnreadNotification, setHasUnreadNotification] = useState(true);
+  const [orderState, setOrderState] = useState<OrderState>({ ...ORDER_AWAL });
 
   const messagesContainerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -74,7 +81,8 @@ export default function ChatbotWidget() {
     setIsTyping(true);
 
     try {
-      const response = await sendChatMessage(text, messages);
+      const response = await sendChatMessage(text, orderState);
+      setOrderState(response.orderState);
       const assistantMsg: ChatMessage = {
         id: `assistant-${Date.now()}`,
         sender: 'assistant',
@@ -87,7 +95,7 @@ export default function ChatbotWidget() {
       const errorMsg: ChatMessage = {
         id: `assistant-${Date.now()}`,
         sender: 'assistant',
-        text: 'Maaf, terjadi sedikit kendala koneksi. Silakan hubungi kami langsung via WhatsApp untuk bantuan segera.',
+        text: 'Maaf Kak, Ina sedang kesulitan memproses pesan itu 🙏 Silakan ulangi sekali lagi, atau langsung chat admin WhatsApp ya.',
         timestamp: new Date(),
         suggestedActions: [{ label: '💬 Hubungi Admin WA', action: 'whatsapp' }],
       };
@@ -102,7 +110,7 @@ export default function ChatbotWidget() {
       const targetUrl =
         action.url ||
         (action.value
-          ? `https://wa.me/6282227445735?text=${encodeURIComponent(action.value)}`
+          ? `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(action.value)}`
           : WA_URL);
       window.open(targetUrl, '_blank', 'noopener,noreferrer');
     } else if (action.action === 'prompt' && action.value) {
@@ -118,6 +126,7 @@ export default function ChatbotWidget() {
         timestamp: new Date(),
       },
     ]);
+    setOrderState({ ...ORDER_AWAL });
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
